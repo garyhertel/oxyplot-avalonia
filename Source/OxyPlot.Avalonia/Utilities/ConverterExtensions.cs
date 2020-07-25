@@ -357,40 +357,40 @@ namespace OxyPlot.Avalonia
         /// </summary>
         /// <param name="button">The button to convert.</param>
         /// <returns>The converted mouse button.</returns>
-        public static OxyMouseButton Convert(this MouseButton button)
+        public static OxyMouseButton Convert(this PointerPointProperties button)
         {
-            switch (button)
+            switch (button.PointerUpdateKind)
             {
-                case MouseButton.Left:
+                case PointerUpdateKind.LeftButtonPressed:
                     return OxyMouseButton.Left;
-                case MouseButton.Middle:
+                case PointerUpdateKind.MiddleButtonPressed:
                     return OxyMouseButton.Middle;
-                case MouseButton.Right:
+                case PointerUpdateKind.RightButtonPressed:
                     return OxyMouseButton.Right;
                 default:
                     return OxyMouseButton.None;
             }
         }
 
-        public static OxyModifierKeys ToModifierKeys(this InputModifiers modifiers)
+        public static OxyModifierKeys ToModifierKeys(this KeyModifiers modifiers)
         {
             var modifierKeys = OxyModifierKeys.None;
-            if ((modifiers & InputModifiers.Shift) != 0)
+            if ((modifiers & KeyModifiers.Shift) != 0)
             {
                 modifierKeys |= OxyModifierKeys.Shift;
             }
 
-            if ((modifiers & InputModifiers.Control) != 0)
+            if ((modifiers & KeyModifiers.Control) != 0)
             {
                 modifierKeys |= OxyModifierKeys.Control;
             }
 
-            if ((modifiers & InputModifiers.Alt) != 0)
+            if ((modifiers & KeyModifiers.Alt) != 0)
             {
                 modifierKeys |= OxyModifierKeys.Alt;
             }
 
-            if ((modifiers & InputModifiers.Windows) != 0)
+            if ((modifiers & KeyModifiers.Meta) != 0)
             {
                 modifierKeys |= OxyModifierKeys.Windows;
             }
@@ -423,11 +423,11 @@ namespace OxyPlot.Avalonia
         public static OxyMouseDownEventArgs ToMouseDownEventArgs(this PointerPressedEventArgs e, IInputElement relativeTo)
         {
             return new OxyMouseDownEventArgs
-            {
-                ChangedButton = e.MouseButton.Convert(),
+			{
+				ChangedButton = e.GetCurrentPoint(relativeTo).Properties.Convert(),
                 ClickCount = e.ClickCount,
                 Position = e.GetPosition(relativeTo).ToScreenPoint(),
-                ModifierKeys = e.InputModifiers.ToModifierKeys()
+                ModifierKeys = e.KeyModifiers.ToModifierKeys()
             };
         }
 
@@ -442,7 +442,7 @@ namespace OxyPlot.Avalonia
             return new OxyMouseEventArgs
             {
                 Position = e.GetPosition(relativeTo).ToScreenPoint(),
-                ModifierKeys = e.InputModifiers.ToModifierKeys()
+                ModifierKeys = e.KeyModifiers.ToModifierKeys()
             };
         }
 
@@ -457,7 +457,7 @@ namespace OxyPlot.Avalonia
             return new OxyMouseEventArgs
             {
                 Position = e.GetPosition(relativeTo).ToScreenPoint(),
-                ModifierKeys = e.InputModifiers.ToModifierKeys()
+                ModifierKeys = e.KeyModifiers.ToModifierKeys()
             };
         }
 

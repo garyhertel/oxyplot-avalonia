@@ -6,13 +6,20 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.xaml;Assets\*;Images\*" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="11.0.0" />
-    <ProjectReference Include="..\..\..\OxyPlot.Avalonia\OxyPlot.Avalonia.csproj" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.4" />
+    <ProjectReference Include="..\..\..\OxyPlot.Avalonia\OxyPlot.Avalonia.csproj" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
   </ItemGroup>
 </Project>

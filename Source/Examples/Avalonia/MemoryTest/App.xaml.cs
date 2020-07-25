@@ -2,7 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Diagnostics;
-using Avalonia.Logging.Serilog;
+//using Avalonia.Logging.Serilog;
 using Avalonia.Themes.Default;
 using Avalonia.Markup.Xaml;
 using Serilog;
@@ -37,12 +37,12 @@ namespace MemoryTest
 
         private static void InitializeLogging()
         {
-#if DEBUG
+/*#if DEBUG
             SerilogLogger.Initialize(new LoggerConfiguration()
                 .MinimumLevel.Warning()
                 .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
                 .CreateLogger());
-#endif
+#endif*/
         }
     }
 }

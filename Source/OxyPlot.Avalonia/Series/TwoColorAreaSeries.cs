@@ -27,7 +27,7 @@ namespace OxyPlot.Avalonia
         /// <summary>
         /// Identifies the <see cref="Fill"/> dependency property.
         /// </summary>
-        public static readonly StyledProperty<Color> FillProperty = AvaloniaProperty.Register<TwoColorAreaSeries, Color>(nameof(Fill), MoreColors.Automatic);
+        public static readonly new StyledProperty<Color> FillProperty = AvaloniaProperty.Register<TwoColorAreaSeries, Color>(nameof(Fill), MoreColors.Automatic);
 
         /// <summary>
         /// Identifies the <see cref="Fill2"/> dependency property.
@@ -80,7 +80,7 @@ namespace OxyPlot.Avalonia
         /// <summary>
         /// Gets or sets Fill above the limit line.
         /// </summary>
-        public Color Fill
+        public new Color Fill
         {
             get
             {
