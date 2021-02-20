@@ -425,8 +425,10 @@ namespace OxyPlot.Avalonia
             return new OxyMouseDownEventArgs
 			{
 				ChangedButton = e.GetCurrentPoint(relativeTo).Properties.Convert(),
-                ClickCount = e.ClickCount,
-                Position = e.GetPosition(relativeTo).ToScreenPoint(),
+#pragma warning disable CS0618 // Type or member is obsolete
+				ClickCount = e.ClickCount,
+#pragma warning restore CS0618 // Type or member is obsolete
+				Position = e.GetPosition(relativeTo).ToScreenPoint(),
                 ModifierKeys = e.KeyModifiers.ToModifierKeys()
             };
         }

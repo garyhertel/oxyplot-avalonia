@@ -1,12 +1,6 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using OxyPlot.Avalonia;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleDemo
 {
@@ -28,7 +22,7 @@ namespace SimpleDemo
             OxyPlotModule.EnsureLoaded();
             AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .Start<MainWindow>();
+                .StartWithClassicDesktopLifetime(args);
         }
     }
 }

@@ -83,12 +83,12 @@ namespace OxyPlot.Avalonia
         /// <summary>
         /// The is visible to user cache.
         /// </summary>
-        private bool isVisibleToUserCache;
+        //private bool isVisibleToUserCache;
 
         /// <summary>
         /// The cached parent.
         /// </summary>
-        private Control containerCache;
+        //private Control containerCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlotBase" /> class.
@@ -285,24 +285,14 @@ namespace OxyPlot.Avalonia
         /// <param name="cursorType">The cursor type.</param>
         public void SetCursorType(CursorType cursorType)
         {
-            switch (cursorType)
+            Cursor = cursorType switch
             {
-                case CursorType.Pan:
-                    Cursor = PanCursor;
-                    break;
-                case CursorType.ZoomRectangle:
-                    Cursor = ZoomRectangleCursor;
-                    break;
-                case CursorType.ZoomHorizontal:
-                    Cursor = ZoomHorizontalCursor;
-                    break;
-                case CursorType.ZoomVertical:
-                    Cursor = ZoomVerticalCursor;
-                    break;
-                default:
-                    Cursor = Cursor.Default;
-                    break;
-            }
+                CursorType.Pan => PanCursor,
+                CursorType.ZoomRectangle => ZoomRectangleCursor,
+                CursorType.ZoomHorizontal => ZoomHorizontalCursor,
+                CursorType.ZoomVertical => ZoomVerticalCursor,
+                _ => Cursor.Default,
+            };
         }
 
         /// <summary>
@@ -446,14 +436,12 @@ namespace OxyPlot.Avalonia
         {
             var container = obj.VisualParent;
 
-            var contentPresenter = container as ContentPresenter;
-            if (contentPresenter != null)
+            if (container is ContentPresenter contentPresenter)
             {
                 container = GetRelevantParent<T>(contentPresenter);
             }
 
-            var panel = container as Panel;
-            if (panel != null)
+            if (container is Panel panel)
             {
                 container = GetRelevantParent<ScrollViewer>(panel);
             }
